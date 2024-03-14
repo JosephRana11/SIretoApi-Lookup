@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--off-white);
+  background-color: #C2AFC4;
+}
+
+h1 {
+  color: var(--green);
+  font-size: var(--font-size-lg);
+}
+
+p {
+  font-size: var(--font-size-md);
+}
+
+p, article, section {
+  line-height: 1.5;
+}
+
+:focus {
+  outline: 0.15rem dashed var(--off-white);
+  outline-offset: 0.25rem;
+}
+main:focus {
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+}
