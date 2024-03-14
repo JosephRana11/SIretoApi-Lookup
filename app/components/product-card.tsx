@@ -11,14 +11,22 @@ import { Productdata } from "./search-bar";
 
 
 const ProductCard = (props : Productdata) => {
-  return (
-    <Card>
+    if (props.code != "")
+    {
+        return(
+    <Card className="bg-purple-50">
       <CardHeader>
         <CardTitle>{props.code}</CardTitle>
         <CardDescription>{props.description}</CardDescription>
       </CardHeader>
     </Card>
-  );
+        )
+    }
+    else{
+        return (
+            <></>
+        )
+    }
 };
 
 

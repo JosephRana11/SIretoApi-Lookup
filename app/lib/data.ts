@@ -12,10 +12,10 @@ export async function fetchProduct(code: string)  : Promise<Productdata> {
                 }
             });
             console.log(response.data);
-            if (response === null) {
+            if (response.data === null) {
                 return {
                     'code' : '404',
-                    'description' : 'not found' 
+                    'description' : 'Not found. Try another Product code.' 
                 }
             }
             else{

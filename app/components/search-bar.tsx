@@ -20,7 +20,7 @@ const SearchBar = () => {
 
      const [searchVal , setSearchVal] = useState("")
       
-     const  callDebounce  = useDebouncedCallback(()=> callApi() , 300)
+     const  callDebounce  = useDebouncedCallback(()=> callApi() , 150)
 
      const [result , setResult ] = useState({"code" : "", "description" : ""})
        
