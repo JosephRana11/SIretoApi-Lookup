@@ -5,19 +5,31 @@ import { clear } from "console";
 import { useState } from "react"
 import { useDebounce } from "use-debounce";
 import { useDebouncedCallback } from "use-debounce"
+import { fetchProduct } from "../lib/data";
+import ProductCard from "./product-card";
 
 
 
 
+export interface Productdata {
+    code : string , 
+    description : string
+}
 const SearchBar = () => {
-     
+    
 
-      const [searchVal , setSearchVal] = useState("")
+     const [searchVal , setSearchVal] = useState("")
       
-      const  callDebounce  = useDebouncedCallback(()=> callApi() , 3000)
+     const  callDebounce  = useDebouncedCallback(()=> callApi() , 300)
+
+     const [result , setResult ] = useState({"code" : "", "description" : ""})
        
-      function callApi(){
+     async function callApi(){
             console.log("Calling Api")
+            if (searchVal != ""){
+                const products = await fetchProduct(searchVal)
+                setResult(products)
+            }
         }
 
       function recordKey(e : string){
@@ -27,10 +39,12 @@ const SearchBar = () => {
         
         
         return(
-            <Input type="email" placeholder="Search Products" className="w-[400px] h-[50px] bg-neutral-50" value={searchVal} onChange={(e) => {recordKey(e.target.value)}}/>
+            <div className="">
+             <Input type="email" placeholder="Search Products" className="w-[400px] h-[50px] bg-neutral-50" value={searchVal} onChange={(e) => {recordKey(e.target.value)}}/>
+             <ProductCard {...result} />
+            </div>
             )
-
         }
 
 
-export default SearchBar
+export default SearchBar;
